@@ -2,7 +2,7 @@ from .db import db
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
-class Order(Base):
+class Order(db.Model, Base):
   __tablename__ = "orders"
 
   id = db.Column(db.Integer, primary_key=True)
