@@ -13,4 +13,13 @@ a{
 button{
   font-family: 'Lato', sans-serif;
   font-weight: bold;
+  background-color:rgb(44, 172, 44);
+  color: white;
+  border:none;
+  padding:10px;
+  border-radius: 5px;
+}
+
+.body-container{
+  margin: 0 auto;
 }
