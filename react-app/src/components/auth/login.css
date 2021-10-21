@@ -1,0 +1,15 @@
+.auth-form{
+  margin: 100px auto;
+  width: 300px;
+  border: 2px solid green;
+  border-radius: 10px;
+  padding: 30px
+}
+.auth-field{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.auth-form button{
+  padding: 20px;
+}
