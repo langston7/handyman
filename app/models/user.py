@@ -3,6 +3,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -15,6 +16,7 @@ class User(db.Model, UserMixin):
 
     orders = db.relationship("Order", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")
+    tasker = db.relationship("Tasker", back_populates="user")
 
     @property
     def password(self):
@@ -35,6 +37,4 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'hashed_password': self.hashed_password,
             'is_tasker': self.is_tasker,
-            'orders': self.orders,
-            'reviews': self.reviews,
         }

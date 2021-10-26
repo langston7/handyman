@@ -3,32 +3,31 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
-const SignUpForm = () => {
+const TaskerSignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [first_name, setFirstName] = useState('');
-  const [last_name, setLastName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [bio, setBio] = useState('');
+  const [availableStart, setAvailableStart] = useState('');
+  const [availableEnd, setAvailableEnd] = useState('');
+  const [state, setState] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(first_name, last_name, email, password));
+      const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
       }
     }
   };
 
-  const updateFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const updateLastName = (e) => {
-    setLastName(e.target.value);
+  const updateUsername = (e) => {
+    setUsername(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -43,6 +42,22 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const updateBio = (e) => {
+    setBio(e.target.value);
+  }
+
+  const updateAvailableStart = (e) => {
+    setAvailableStart(e.target.value)
+  }
+
+  const updateAvailableEnd = (e) => {
+    setAvailableEnd(e.target.value);
+  }
+
+  const updateState = (e) => {
+    setState(e.target.value);
+  }
+
   if (user) {
     return <Redirect to='/' />;
   }
@@ -56,21 +71,12 @@ const SignUpForm = () => {
           ))}
         </div>
         <div className='auth-field'>
-          <label>First Name</label>
+          <label>User Name</label>
           <input
             type='text'
-            name='first_name'
-            onChange={updateFirstName}
-            value={first_name}
-          ></input>
-        </div>
-        <div className='auth-field'>
-          <label>Last Name</label>
-          <input
-            type='text'
-            name='last_name'
-            onChange={updateLastName}
-            value={last_name}
+            name='username'
+            onChange={updateUsername}
+            value={username}
           ></input>
         </div>
         <div className='auth-field'>
@@ -101,6 +107,43 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
+        <div>
+          <label className='auth-field'>Enter a short bio about yourself</label>
+          <input
+            type='text'
+            name='bio'
+            onChange={updateBio}
+            value={bio}
+          >
+          </input>
+        </div>
+        <div>
+          <label className='auth-field'>Enter the state you live in</label>
+          <input
+            type='text'
+            name='bio'
+            onChange={updateState}
+            value={state}
+          ></input>
+        </div>
+        <div>
+          <label className='auth-field'>Enter what time you'd like to start taking tasks</label>
+          <input
+            type='integer'
+            name='start'
+            onChange={updateAvailableStart}
+            value={availableStart}
+          ></input>
+        </div>
+        <div>
+          <label className='auth-field'>Enter what time you'd like to stop taking tasks</label>
+          <input
+            type='text'
+            name='end'
+            onChange={updateAvailableEnd}
+            value={availableEnd}
+          ></input>
+        </div>
         <button type='submit'>Sign Up</button>
       </form>
     </div>
@@ -108,4 +151,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default TaskerSignUpForm;

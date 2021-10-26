@@ -7,6 +7,11 @@ import Navigation from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import Home from './components/Home';
+import Services from './components/Services';
+import PreForm from './components/PreForm';
+import OrderForm from './components/OrderForm';
+import MyOrders from './components/MyOrders';
+import ReviewForm from './components/ReviewForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,19 +45,25 @@ function App() {
 
         </Route>
         <Route path='/services' exact={true}>
-
+          <Services />
         </Route>
         <ProtectedRoute path='/dashboard' exact={true}>
 
         </ProtectedRoute>
         <ProtectedRoute path='/user/tasks' exact={true}>
-
+          <MyOrders />
         </ProtectedRoute>
         <ProtectedRoute path='/user/profile' exact={true} >
 
         </ProtectedRoute>
         <ProtectedRoute path='/booking' exact={true} >
-
+          <PreForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/form' >
+          <OrderForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/review'>
+          <ReviewForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

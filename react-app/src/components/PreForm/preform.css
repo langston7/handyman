@@ -1,0 +1,11 @@
+.preform-select{
+  padding:5px;
+}
+
+.preform-button{
+  background-color:rgb(44, 172, 44);
+  color: white;
+  border:none;
+  padding:10px;
+  border-radius: 5px;
+}

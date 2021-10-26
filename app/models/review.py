@@ -18,7 +18,4 @@ class Review(db.Model):
       'tasker_id': self.tasker_id,
       'user_id': self.user_id,
       'rating': self.rating,
-      'content': self.content,
-      'tasker': self.tasker,
-      'user': self.user,
     }
