@@ -3,7 +3,7 @@
 
 body{
   font-family: 'Lato', sans-serif;
-  margin: 0 auto;
+  margin: 0;
 }
 
 a{
@@ -21,5 +21,11 @@ button{
 }
 
 .body-container{
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button:hover{
+  cursor: pointer;
 }

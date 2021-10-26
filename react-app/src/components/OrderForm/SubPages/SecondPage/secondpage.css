@@ -1,0 +1,33 @@
+.sp-container{
+  display: flex;
+  justify-content: center;
+}
+
+.tasker-card{
+  display:flex;
+}
+
+.sp-left{
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid lightgray;
+  width: 300px;
+}
+.sp-right{
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+
+.tasker-left{
+  display:flex;
+  flex-direction: column;
+  width:200px;
+}
+
+.tasker-avatar{
+  width:200px;
+  height:200px;
+  border-radius: 30px;
+}

@@ -1,13 +1,13 @@
 from .db import db
-from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
-class Order(db.Model, Base):
+class Order(db.Model):
   __tablename__ = "orders"
 
   id = db.Column(db.Integer, primary_key=True)
   location = db.Column(db.String(50), nullable=False)
-  date = db.Column(db.DateTime, nullable=False)
+  #date = db.Column(db.DateTime, nullable=False)
+  duration = db.Column(db.String(10), nullable=False)
+  details = db.Column(db.Text, nullable=False)
   tasker_id = db.Column(db.Integer, db.ForeignKey("taskers.id"))
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
   category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
@@ -20,11 +20,12 @@ class Order(db.Model, Base):
     return {
       'id': self.id,
       'location': self.location,
-      'date': self.date,
+      'duration': self.duration,
+      'details': self.duration,
       'tasker_id': self.tasker_id,
       'user_id': self.user_id,
       'category_id': self.category_id,
-      'tasker': self.tasker,
-      'user': self.user,
-      'category': self.category,
+      'category': self.category.name,
+      'tasker_FN': self.tasker.user.first_name,
+      'tasker_LN': self.tasker.user.last_name
     }
