@@ -19,7 +19,7 @@ const taskerReducer = (state = {}, action) => {
     case GET_TASKERS:
       newState = Object.assign({}, state);
       newState = action.payload;
-      return newState
+      return newState;
     default:
       return state;
   }

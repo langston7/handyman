@@ -27,6 +27,9 @@ def post_order():
   if form.validate_on_submit():
     order = Order(
       category_id = (form.data['category_id']),
+      date = (form.data['date']),
+      time = (form.data['time']),
+      is_complete = (form.data['is_complete']),
       location = (form.data['location']),
       duration = (form.data['duration']),
       details = (form.data['details']),

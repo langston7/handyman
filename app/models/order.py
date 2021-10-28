@@ -5,9 +5,11 @@ class Order(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   location = db.Column(db.String(50), nullable=False)
-  #date = db.Column(db.DateTime, nullable=False)
+  date = db.Column(db.String(50), nullable=False)
+  time = db.Column(db.String(20), nullable=False)
   duration = db.Column(db.String(10), nullable=False)
   details = db.Column(db.Text, nullable=False)
+  is_complete = db.Column(db.Boolean, nullable=False)
   tasker_id = db.Column(db.Integer, db.ForeignKey("taskers.id"))
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
   category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
@@ -20,8 +22,11 @@ class Order(db.Model):
     return {
       'id': self.id,
       'location': self.location,
+      'date': self.date,
+      'time': self.time,
       'duration': self.duration,
-      'details': self.duration,
+      'details': self.details,
+      'is_complete': self.is_complete,
       'tasker_id': self.tasker_id,
       'user_id': self.user_id,
       'category_id': self.category_id,

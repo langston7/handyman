@@ -1,11 +1,27 @@
+.preform-container{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://assets.taskrabbit.com/v3/assets/static/heros/homepage/hero-bookatask-small@3x-22ded6e7db61165cff390bdb32b128f9d8f517291e7080696ed78ef16e02895c.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+
 .preform-select{
-  padding:5px;
+  padding:8px;
+  width:500px;
 }
 
 .preform-button{
+  margin: 30px;
   background-color:rgb(44, 172, 44);
   color: white;
   border:none;
-  padding:10px;
+  padding:20px;
   border-radius: 5px;
 }
