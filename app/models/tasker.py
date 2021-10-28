@@ -1,4 +1,5 @@
 from .db import db
+from .order import Order
 
 TaskersToCategories = db.Table(
   'taskers_to_categories',
@@ -26,6 +27,13 @@ class Tasker(db.Model):
     secondary=TaskersToCategories,
     back_populates="taskers")
 
+  def my_orders(self):
+    orders = Order.query.filter(Order.tasker_id == self.id).all()
+    orderDict = {}
+    for order in orders:
+      orderDict[order.id] = order.to_dict()
+    return orderDict
+
   def to_dict(self):
     userDict = self.user.to_dict()
     return {
@@ -37,7 +45,8 @@ class Tasker(db.Model):
       'tasks_completed': self.tasks_completed,
       'availability_start': self.availability_start,
       'availability_end': self.availability_end,
-      'user': userDict
+      'user': userDict,
+      'my_orders': self.my_orders(),
     }
 
 class Category(db.Model):

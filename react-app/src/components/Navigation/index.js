@@ -16,8 +16,9 @@ const Navigation = () => {
         {user ?
           <div className='nav-link-container'>
             <NavLink to='/booking' className='nav-link'>Book a task</NavLink>
-            <NavLink to='/user/tasks' className='nav-link'>My Tasks</NavLink>
-            <NavLink to='/user/id/profile' className='nav-link'>Profile</NavLink>
+            <NavLink to='/user/orders' className='nav-link'>My Orders</NavLink>
+            {//<NavLink to='/user/profile' className='nav-link'>Profile</NavLink>
+}
             <LogoutButton/>
           </div>
             :

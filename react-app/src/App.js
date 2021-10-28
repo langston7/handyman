@@ -12,6 +12,7 @@ import PreForm from './components/PreForm';
 import OrderForm from './components/OrderForm';
 import MyOrders from './components/MyOrders';
 import ReviewForm from './components/ReviewForm';
+import MyProfile from './components/MyProfile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -50,13 +51,13 @@ function App() {
         <ProtectedRoute path='/dashboard' exact={true}>
 
         </ProtectedRoute>
-        <ProtectedRoute path='/user/tasks' exact={true}>
+        <ProtectedRoute path='/user/orders' exact={true}>
           <MyOrders />
         </ProtectedRoute>
         <ProtectedRoute path='/user/profile' exact={true} >
-
+          <MyProfile />
         </ProtectedRoute>
-        <ProtectedRoute path='/booking' exact={true} >
+        <ProtectedRoute path='/booking'>
           <PreForm />
         </ProtectedRoute>
         <ProtectedRoute path='/form' >

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../store/category";
-import { Link } from "react-router-dom";
 import './preform.css'
 
 function PreForm(){
@@ -19,23 +18,24 @@ function PreForm(){
 
   return(
     <div className="body-container">
-      <h2>Book Your Next Task</h2>
-      <select
-        name='category_id'
-        value={currCatName}
-        onChange={handleChange}
-        className="preform-select"
-      >
-        {categories.map((category) =>
-          <option value={category.name}>{category.name}</option>
-        )}
-      </select>
-      <Link to={{
-        pathname:`/form?category=${currCatName}`,
-        state:categories
-      }} className="preform-button">
-        Get started
-      </Link>
+      <div className="preform-container">
+        <h2>Book Your Next Task</h2>
+        <select
+          name='category_id'
+          value={currCatName}
+          onChange={handleChange}
+          className="preform-select"
+        >
+          {categories.map((category) =>
+            <option value={category.name}>{category.name}</option>
+          )}
+        </select>
+        <a href={`/form?category=${currCatName}`}
+          className="preform-button"
+        >
+          Get started
+        </a>
+      </div>
     </div>
 
   )

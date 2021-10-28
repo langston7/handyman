@@ -7,7 +7,7 @@ class Review(db.Model):
   tasker_id = db.Column(db.Integer, db.ForeignKey("taskers.id"))
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
   rating = db.Column(db.Integer, nullable=False)
-  content = db.Column(db.Integer, nullable=False)
+  content = db.Column(db.Text, nullable=False)
 
   tasker = db.relationship("Tasker", back_populates="reviews")
   user = db.relationship("User", back_populates="reviews")
