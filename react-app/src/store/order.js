@@ -10,7 +10,7 @@ const get_orders = (orders) => {
 
 const delete_order = (order_id) => {
   return{
-    type: GET_ORDERS,
+    type: DELETE_ORDER,
     payload: order_id
   }
 }
@@ -43,9 +43,7 @@ const orderReducer = (state = {}, action) => {
       return newState;
     case DELETE_ORDER:
       newState = Object.assign({}, state);
-      newState.orders = newState.orders.filter(order => {
-        return order.id !== action.payload
-      })
+      delete newState[action.payload];
       return newState;
     default:
       return state;

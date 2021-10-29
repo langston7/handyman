@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Tasker, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
+from app.forms import EnrollmentForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -73,6 +74,41 @@ def sign_up():
         db.session.commit()
         login_user(user)
         return user.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@auth_routes.route('/signupTasker', methods=['POST'])
+def sign_up_tasker():
+    """
+    Creates a new user with tasker data and logs them in
+    """
+    form = EnrollmentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user = User(
+            first_name=form.data['first_name'],
+            last_name=form.data['last_name'],
+            email=form.data['email'],
+            password=form.data['password'],
+            is_tasker=True,
+        )
+        db.session.add(user)
+        userDict = user.to_dict()
+        db.session.commit()
+        tasker = Tasker(
+            user_id=user.id,
+            profile_pic="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png",
+            tasks_completed=0,
+            availability_start=9,
+            availability_end=22,
+            bio=form.data['bio'],
+            state=form.data['state'],
+        )
+
+        db.session.add(tasker)
+        db.session.commit()
+
+        login_user(user)
+        return userDict
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

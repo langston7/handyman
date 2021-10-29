@@ -13,6 +13,7 @@ import OrderForm from './components/OrderForm';
 import MyOrders from './components/MyOrders';
 import ReviewForm from './components/ReviewForm';
 import MyProfile from './components/MyProfile';
+import TaskerSignUpForm from './components/auth/TaskerSignUpForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,7 +44,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/tasker-enrollment' exact={true}>
-
+          <TaskerSignUpForm />
         </Route>
         <Route path='/services' exact={true}>
           <Services />

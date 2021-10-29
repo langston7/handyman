@@ -18,13 +18,29 @@ function OrderForm(){
   const user = useSelector(state => state.session.user);
   const [formData, setFormData] = useState({})
   const [currentStep, setCurrentStep] = useState(1);
-  //const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(true);
   const totalSteps = 3;
-
 
   useEffect(() => {
     dispatch(getCategories());
-  }, [dispatch])
+    const checkDisable = () => {
+      switch(currentStep){
+        case 1:
+          if(formData.location && formData.duration && formData.details && formData.details !== ''){
+            setDisabled(false);
+          } else { setDisabled(true) };
+          break;
+        case 2:
+          if(formData.date && formData.time && formData.tasker_id){
+            setDisabled(false);
+          } else { setDisabled(true) };
+          break;
+        default:
+          return
+      }
+    }
+    checkDisable()
+  }, [dispatch, currentStep, formData.location, formData.duration, formData.details, formData.date, formData.time, formData.tasker_id])
 
   const initializeFormData = () => {
     formData.category_id = category.id;
@@ -39,13 +55,29 @@ function OrderForm(){
 
   const nextStep = e => {
     e.preventDefault()
-    if(!formData.location || !formData.duration || !formData.details){
-      return
-    } else {
-      if (currentStep < totalSteps) {
-        setCurrentStep(prevStep => prevStep + 1)
-      }
+    switch(currentStep){
+      case 1:
+        if(!formData.location || !formData.duration || !formData.details){
+          return
+        } else {
+          if (currentStep < totalSteps) {
+            setCurrentStep(prevStep => prevStep + 1)
+          }
+        }
+        break;
+      case 2:
+        if(!formData.date || !formData.time || !formData.tasker_id){
+          return
+        } else {
+          if (currentStep < totalSteps) {
+            setCurrentStep(prevStep => prevStep + 1)
+          }
+        }
+        break;
+      default:
+        return
     }
+
   }
 
   const handleChange = (e) => {
@@ -56,7 +88,7 @@ function OrderForm(){
     setFormData({
       ...oldState,
       [name]: value
-    })
+    });
     console.log(formData);
   }
 
@@ -106,7 +138,7 @@ function OrderForm(){
         />
       </form>
       <div className="step-button-container">
-        <button className='step-button' onClick={nextStep}>Next</button>
+        <button className={`step-button ${disabled ? "disabled" : null}`} onClick={nextStep}>Next</button>
         <button className="step-button" onClick={prevStep}>Previous</button>
       </div>
     </div>

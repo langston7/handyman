@@ -5,7 +5,7 @@ import './secondpage.css';
 
 function SecondPage({category, location, date, time, handleChange, currentStep}){
   const dispatch = useDispatch();
-  const [currTasker, setCurrTasker] = useState(0);
+  const [currTasker, setCurrTasker] = useState(null);
   const taskers = useSelector(state => Object.values(state.taskers));
   const taskersByState = taskers?.filter((tasker) => tasker.state === location);
 
@@ -32,16 +32,21 @@ function SecondPage({category, location, date, time, handleChange, currentStep})
 
   const handleSelect = (e) => {
     handleChange(e);
-    updateCurrTasker(e)
+    updateCurrTasker(e);
+  }
+
+  const handleDateAndTime = (e) => {
+    setCurrTasker(null);
+    handleChange(e);
   }
 
   return (
     <div className="sp-container">
       <div className="sp-left">
         <div>Select a day</div>
-        <input type="date" name="date" onChange={handleChange}></input>
+        <input type="date" name="date" onChange={handleDateAndTime}></input>
         <div>Choose a Timeslot</div>
-        <select name="time" onChange={handleChange}>
+        <select name="time" onChange={handleDateAndTime}>
           <option disabled selected value> -Select a time- </option>
           <option value={'morning'}>8:00AM - 12:00PM</option>
           <option value={'noon'}>1:00PM - 5:00PM</option>

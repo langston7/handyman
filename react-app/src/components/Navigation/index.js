@@ -6,19 +6,22 @@ import './navigation.css'
 const Navigation = () => {
   const user = useSelector(state => state.session.user);
 
-
   return (
     <nav className='nav-container'>
       <div className='nav-inner'>
         <NavLink to='/' exact={true} className='nav-link'>
           HandyMan
         </NavLink>
-        {user ?
+        {user?.is_tasker ?
+          <div className='nav-link-container'>
+            <NavLink to='/user/profile' className='nav-link'>My Profile</NavLink>
+            <LogoutButton/>
+          </div>
+            :
+         user ?
           <div className='nav-link-container'>
             <NavLink to='/booking' className='nav-link'>Book a task</NavLink>
             <NavLink to='/user/orders' className='nav-link'>My Orders</NavLink>
-            {//<NavLink to='/user/profile' className='nav-link'>Profile</NavLink>
-}
             <LogoutButton/>
           </div>
             :

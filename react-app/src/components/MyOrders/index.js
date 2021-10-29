@@ -10,14 +10,14 @@ function MyOrders(){
   const history = useHistory();
   const orders = useSelector(state => Object.values(state.orders));
 
-
   useEffect(() => {
-    dispatch(getOrders())
+    dispatch(getOrders());
   }, [dispatch])
 
-  const cancelTask = (e) => {
+  const cancelTask = async (e) => {
     e.preventDefault()
-    dispatch(deleteOrder(e.target.value));
+    await dispatch(deleteOrder(e.target.value));
+    await dispatch(getOrders());
   }
 
   return(

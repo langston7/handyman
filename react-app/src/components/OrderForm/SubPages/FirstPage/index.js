@@ -12,7 +12,6 @@ function FirstPage({category, handleChange, currentStep}){
     'Texas','Utah','Vermont','Virgin Island','Virginia','Washington',
     'West Virginia','Wisconsin','Wyoming'
   ]
-
   if (currentStep !== 1){
     return null
   }
@@ -46,6 +45,7 @@ function FirstPage({category, handleChange, currentStep}){
         <div>
           <div>TELL US THE DETAILS OF YOUR TASK</div>
           <input
+            maxLength='20'
             name="details"
             type="textfield"
             placeholder="What do you need done"
