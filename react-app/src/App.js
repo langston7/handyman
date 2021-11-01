@@ -74,9 +74,9 @@ function App() {
         <ProtectedRoute path='/edit-review'>
           <EditReviewForm />
         </ProtectedRoute>
-        <ProtectedRoute path='/about'>
+        <Route path='/about'>
           <About />
-        </ProtectedRoute>
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>
