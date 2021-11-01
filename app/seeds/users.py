@@ -1,5 +1,7 @@
 from app.models import db, User
-import names
+import random
+first_names = ['Steve', 'Bill', 'Ken', "Danny"]
+last_names = ['Steveson', 'Billson', 'Kenson', 'Dannyson']
 
 def seed_users():
     demo = User(
@@ -30,8 +32,8 @@ def seed_users():
 
     for i in range(1000):
         user = User(
-            first_name=names.get_first_name(),
-            last_name=names.get_last_name(),
+            first_name=first_names[random.randint(0,3)],
+            last_name=last_names[random.randint(0,3)],
             email=(str(i) + "abc@aa.io"),
             password='password',
             is_tasker=True
