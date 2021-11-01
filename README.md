@@ -27,7 +27,11 @@ The navigation bar changes depending on three states:
 
 As a guest, you can view services offered, sign up, log in, or enroll as a tasker.
 As a user, you can get started by clicking the booking tab on the navbar, or utilizing the selection field on the splashpage.  After selecting a service, select the state you live in, how long the task should take, and youre desired tasker.
-As an employee, view orders people have submitted with you, and view your profile for reviews.
+As an employee, view orders people have submitted with you by visiting the home page, and view your profile for reviews.
+
+To leave a review for a tasker, you must head to "My Orders" and find the order which was placed.  From here, you can either cancel the order, or leave a review.  To edit your review, head to that tasker's profile and find your comment.  An edit button will display only if it's your comment.
+
+On the My Orders page, you can Edit your message to the tasker.
 
 ## Technologies Used
 Handyman uses React for its frontend to ensure an easy-to-traverse and seamless user environment.  It makes use of Flask with SQLalchemy for maintaining and accessing it's own backend API, developed in the RESTful convention.
