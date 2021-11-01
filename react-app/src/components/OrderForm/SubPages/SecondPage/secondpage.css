@@ -12,11 +12,24 @@
 
 .sp-left{
   margin: 30px;
+
+}
+
+.sp-left-card{
   padding: 20px;
-  border: 1px solid lightgray;
   width: 300px;
   height: 200px;
+  border: 1px solid lightgray;
 }
+
+.sp-left-card div{
+  margin-bottom: 10px;
+}
+
+.sp-left-card input{
+  margin-bottom: 30px;
+}
+
 .sp-right{
   margin: 10px;
   padding: 20px;
@@ -38,4 +51,17 @@
 .highlight{
   background-color: rgb(167, 223, 167);
   box-shadow: 0px 1px 6px rgb(167, 223, 167);
+}
+
+.profile-button{
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  background-color:rgb(44, 172, 44);
+  color: white;
+  border:none;
+  padding:10px;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: center;
 }

@@ -16,10 +16,10 @@ function Services(){
       <div className='services-banner'>
         <div className='banner-quote'>What do you need help with?</div>
       </div>
-      <div>Let Handymen help tackle your to-do list!</div>
+      <h2>Let Handymen help tackle your to-do list!</h2>
       <div className='services-body'>
         {categories?.map((category) =>
-          <div className="services-card">
+          <div key={category.id} className="services-card">
             <img className="services-img" src={category.img_src} alt="category"></img>
             <div className="services-name">{category.name}</div>
           </div>

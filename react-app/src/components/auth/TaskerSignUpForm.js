@@ -1,33 +1,49 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUpTasker } from '../../store/session';
 
 const TaskerSignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [bio, setBio] = useState('');
-  const [availableStart, setAvailableStart] = useState('');
-  const [availableEnd, setAvailableEnd] = useState('');
   const [state, setState] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const states=['Alabama','Alaska','Arizona','Arkansas','California','Colorado',
+    'Connecticut','Delaware', 'Florida','Georgia', 'Hawaii','Idaho',
+    'Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine',
+    'Maryland','Massachusetts','Michigan','Minnesota', 'Mississippi','Missouri',
+    'Montana','Nebraska','Nevada','New Hampshire', 'New Jersey','New Mexico',
+    'New York','North Carolina','North Dakota', 'Ohio','Oklahoma','Oregon',
+    'Pennsylvania', 'Rhode Island','South Carolina','South Dakota','Tennessee',
+    'Texas','Utah','Vermont','Virgin Island','Virginia','Washington',
+    'West Virginia','Wisconsin','Wyoming'
+  ]
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUpTasker(first_name, last_name, email, password, bio, state));
       if (data) {
         setErrors(data)
       }
+    } else {
+      setErrors(["Passwords do not match."])
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -44,14 +60,6 @@ const TaskerSignUpForm = () => {
 
   const updateBio = (e) => {
     setBio(e.target.value);
-  }
-
-  const updateAvailableStart = (e) => {
-    setAvailableStart(e.target.value)
-  }
-
-  const updateAvailableEnd = (e) => {
-    setAvailableEnd(e.target.value);
   }
 
   const updateState = (e) => {
@@ -71,26 +79,42 @@ const TaskerSignUpForm = () => {
           ))}
         </div>
         <div className='auth-field'>
-          <label>User Name</label>
+          <label>First Name</label>
           <input
+            required
             type='text'
-            name='username'
-            onChange={updateUsername}
-            value={username}
+            name='first_name'
+            onChange={updateFirstName}
+            value={first_name}
+            maxLength="20"
+          ></input>
+        </div>
+        <div className='auth-field'>
+          <label>Last Name</label>
+          <input
+            required
+            type='text'
+            name='last_name'
+            onChange={updateLastName}
+            value={last_name}
+            maxLength="20"
           ></input>
         </div>
         <div className='auth-field'>
           <label>Email</label>
           <input
-            type='text'
+            required
+            type='email'
             name='email'
             onChange={updateEmail}
             value={email}
+            maxLength="40"
           ></input>
         </div>
         <div className='auth-field'>
           <label>Password</label>
           <input
+            required
             type='password'
             name='password'
             onChange={updatePassword}
@@ -110,39 +134,27 @@ const TaskerSignUpForm = () => {
         <div>
           <label className='auth-field'>Enter a short bio about yourself</label>
           <input
+            required
             type='text'
             name='bio'
             onChange={updateBio}
             value={bio}
+            maxLength="400"
           >
           </input>
         </div>
         <div>
           <label className='auth-field'>Enter the state you live in</label>
-          <input
-            type='text'
-            name='bio'
+          <select
+            required
+            name='state'
             onChange={updateState}
-            value={state}
-          ></input>
-        </div>
-        <div>
-          <label className='auth-field'>Enter what time you'd like to start taking tasks</label>
-          <input
-            type='integer'
-            name='start'
-            onChange={updateAvailableStart}
-            value={availableStart}
-          ></input>
-        </div>
-        <div>
-          <label className='auth-field'>Enter what time you'd like to stop taking tasks</label>
-          <input
-            type='text'
-            name='end'
-            onChange={updateAvailableEnd}
-            value={availableEnd}
-          ></input>
+          >
+            <option disabled selected value> -Select your State- </option>
+            {states.map((state) =>
+              <option key={state} value={state}>{state}</option>
+            )}
+          </select>
         </div>
         <button type='submit'>Sign Up</button>
       </form>

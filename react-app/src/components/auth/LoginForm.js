@@ -19,6 +19,14 @@ const LoginForm = () => {
     }
   };
 
+  const logInDemo = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    }
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -35,6 +43,7 @@ const LoginForm = () => {
     <div className='body-container'>
       <form onSubmit={onLogin} className='auth-form'>
         <div>
+          <div>{errors.length>0 ? "There was an issue with your login." : null}</div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
@@ -46,7 +55,9 @@ const LoginForm = () => {
             type='text'
             placeholder='Email'
             value={email}
+            maxLength='40'
             onChange={updateEmail}
+            required={true}
           />
         </div>
         <div className='auth-field'>
@@ -56,10 +67,13 @@ const LoginForm = () => {
             type='password'
             placeholder='Password'
             value={password}
+            maxLength='40'
             onChange={updatePassword}
+            required={true}
           />
         </div>
         <button type='submit'>Login</button>
+        <button onClick={logInDemo}>Demo User</button>
       </form>
     </div>
 

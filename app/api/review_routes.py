@@ -1,7 +1,8 @@
 from flask import Blueprint, request
-from flask_login import login_required, current_user
+from flask_login import login_required
 from app.models import Review, db
 from app.forms.review_form import ReviewForm
+from app.forms.edit_review_form import EditReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -30,8 +31,21 @@ def post_review():
       user_id = (form.data['user_id']),
       tasker_id = (form.data['tasker_id'])
     )
-    print(review)
     db.session.add(review)
+    db.session.commit()
+    return review.to_dict()
+  else:
+    return {'error': 'Form did not validate'}, 401
+
+@review_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
+def put_review(id):
+  review = Review.query.get(id)
+  form = EditReviewForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    review.rating = form.data['rating']
+    review.content = form.data['content']
     db.session.commit()
     return review.to_dict()
   else:

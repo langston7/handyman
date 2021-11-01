@@ -10,21 +10,40 @@ import ThirdPage from "./SubPages/ThirdPage";
 function OrderForm(){
   const dispatch = useDispatch();
   const categories = useSelector(state => Object.values(state.categories));
-  //const categories = useLocation().state
   const history = useHistory();
   const params = new URLSearchParams(useLocation().search)
   const categoryName = params.get('category');
-  const category = categories.filter((category) => category.name === categoryName)[0]
+  if(!categoryName){ history.push('/booking') };
+  const found = categories.some(el => el.name === categoryName)
+  const category = categories?.filter((category) => category.name === categoryName)[0]
   const user = useSelector(state => state.session.user);
   const [formData, setFormData] = useState({})
   const [currentStep, setCurrentStep] = useState(1);
-  //const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(true);
   const totalSteps = 3;
+
 
 
   useEffect(() => {
     dispatch(getCategories());
-  }, [dispatch])
+    const checkDisable = () => {
+      switch(currentStep){
+        case 1:
+          if(formData.location && formData.duration && formData.details && formData.details !== ''){
+            setDisabled(false);
+          } else { setDisabled(true) };
+          break;
+        case 2:
+          if(formData.date && formData.time && formData.tasker_id){
+            setDisabled(false);
+          } else { setDisabled(true) };
+          break;
+        default:
+          return
+      }
+    }
+    checkDisable();
+  }, [found, dispatch, currentStep, formData.location, formData.duration, formData.details, formData.date, formData.time, formData.tasker_id])
 
   const initializeFormData = () => {
     formData.category_id = category.id;
@@ -39,13 +58,29 @@ function OrderForm(){
 
   const nextStep = e => {
     e.preventDefault()
-    if(!formData.location || !formData.duration || !formData.details){
-      return
-    } else {
-      if (currentStep < totalSteps) {
-        setCurrentStep(prevStep => prevStep + 1)
-      }
+    switch(currentStep){
+      case 1:
+        if(!formData.location || !formData.duration || !formData.details){
+          return
+        } else {
+          if (currentStep < totalSteps) {
+            setCurrentStep(prevStep => prevStep + 1)
+          }
+        }
+        break;
+      case 2:
+        if(!formData.date || !formData.time || !formData.tasker_id){
+          return
+        } else {
+          if (currentStep < totalSteps) {
+            setCurrentStep(prevStep => prevStep + 1)
+          }
+        }
+        break;
+      default:
+        return
     }
+
   }
 
   const handleChange = (e) => {
@@ -53,11 +88,13 @@ function OrderForm(){
     const { name, value } = e.target
     if (name === "tasker_id"){ e.preventDefault() }
     const oldState = { ...formData }
+    if (name === 'date' || name === 'time'){
+      oldState.tasker_id = null;
+    }
     setFormData({
       ...oldState,
       [name]: value
-    })
-    console.log(formData);
+    });
   }
 
   const handleSubmit = async e => {
@@ -79,15 +116,29 @@ function OrderForm(){
         tasker_id: formData.tasker_id,
       })
     });
-    const order = await response.json();
-    history.push(`/`);
+    await response.json();
+    history.push(`/user/orders`);
   }
 
+  if(!found){
+    return(
+      <div className="body-container">
+        <div className="form-container">
+          <div className="form-inner">
+
+          </div>
+        </div>
+      </div>
+    )
+  }else {
   return(
     <div className="body-container">
       <form onSubmit={handleSubmit} autoComplete="off">
         <FirstPage
           category={category}
+          location={formData.location}
+          duration={formData.duration}
+          details={formData.details}
           handleChange={handleChange}
           currentStep={currentStep}
         />
@@ -106,11 +157,11 @@ function OrderForm(){
         />
       </form>
       <div className="step-button-container">
-        <button className='step-button' onClick={nextStep}>Next</button>
-        <button className="step-button" onClick={prevStep}>Previous</button>
+        <button className={`step-button ${currentStep===1 ? "disabled" : null}`} onClick={prevStep}>Previous</button>
+        <button className={`step-button ${disabled ? "disabled" : null} ${currentStep===3 ? "disabled" : null}`} onClick={nextStep}>Next</button>
       </div>
     </div>
   )
-}
+}}
 
 export default OrderForm

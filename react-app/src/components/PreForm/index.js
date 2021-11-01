@@ -6,7 +6,7 @@ import './preform.css'
 function PreForm(){
   const dispatch = useDispatch();
   const categories = useSelector(state => Object.values(state.categories));
-  const [currCatName, setCurrCatName] = useState(categories[0]?.name)
+  const [currCatName, setCurrCatName] = useState("Mounting")
 
   const handleChange = (e) => {
     setCurrCatName(e.target.value)
@@ -27,7 +27,7 @@ function PreForm(){
           className="preform-select"
         >
           {categories.map((category) =>
-            <option value={category.name}>{category.name}</option>
+            <option key={category.id} value={category.name}>{category.name}</option>
           )}
         </select>
         <a href={`/form?category=${currCatName}`}

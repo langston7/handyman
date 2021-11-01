@@ -98,6 +98,35 @@ export const signUp = (first_name, last_name, email, password) => async (dispatc
   }
 }
 
+export const signUpTasker = (first_name, last_name, email, password, bio, state) => async (dispatch) => {
+  const response = await fetch('/api/auth/signupTasker', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      first_name,
+      last_name,
+      email,
+      password,
+      bio,
+      state
+    }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data))
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+}
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:

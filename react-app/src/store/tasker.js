@@ -7,6 +7,21 @@ const get_taskers = (taskers) => {
   };
 }
 
+export const getOneTasker = (id) => async dispatch => {
+  const response = await fetch(`/api/taskers/${id}`);
+  const data = await response.json();
+  dispatch(get_taskers(data));
+}
+
+export const getTaskerByUserID = (user_id) => async dispatch => {
+  const response = await fetch(`/api/taskers/byuser/${user_id}`);
+  if(response.ok){
+    const data = await response.json();
+    dispatch(get_taskers(data));
+    return data;
+  }
+}
+
 export const getTaskers = () => async dispatch => {
   const response = await fetch('/api/taskers/');
   const data = await response.json();
