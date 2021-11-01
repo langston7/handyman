@@ -92,7 +92,7 @@ def sign_up_tasker():
             is_tasker=True,
         )
         db.session.add(user)
-        userDict = user.to_dict()
+        #userDict = user.to_dict()
         db.session.commit()
         tasker = Tasker(
             user_id=user.id,
@@ -108,7 +108,7 @@ def sign_up_tasker():
         db.session.commit()
 
         login_user(user)
-        return userDict
+        return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

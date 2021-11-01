@@ -22,4 +22,6 @@
 
 .tasker-card-item{
   padding:6px;
+  width: 270px;
+  word-wrap: break-word;
 }

@@ -14,11 +14,12 @@ function TaskerProfile(){
   const thisReviews = reviews.filter((review) => review.tasker_id === parseInt(tasker_id));
 
   let averageRating = 0;
-  for(let review of thisReviews){
-    averageRating+=review.rating;
+  if(thisReviews[0]){
+    for(let review of thisReviews){
+      averageRating+=review.rating;
+    }
+    averageRating = (averageRating/thisReviews.length).toFixed(2);
   }
-  averageRating = (averageRating/thisReviews.length).toFixed(2);
-
   useEffect(()=> {
     dispatch(getOneTasker(tasker_id))
     dispatch(getReviews())

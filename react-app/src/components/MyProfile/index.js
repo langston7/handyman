@@ -25,7 +25,7 @@ function MyProfile(){
             <div className="tasker-right-top">
               <div>{thisTasker?.user.first_name} {thisTasker?.user.last_name}</div>
               <div>Tasks Completed: {thisTasker?.tasks_completed}</div>
-              <div>{thisTasker?.bio}</div>
+              <div className="tasker-bio">{thisTasker?.bio}</div>
             </div>
           </div>
         </div>
