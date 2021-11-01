@@ -43,6 +43,7 @@ function EditReviewForm(){
           className="review-content"
           value={content}
           onChange={updateContent}
+          required
         >
         </textarea>
         <div className="review-button-container">

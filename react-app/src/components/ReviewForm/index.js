@@ -5,7 +5,7 @@ import './reviewform.css';
 function ReviewForm(){
   const history = useHistory();
   const {tasker_id, user_id} = useLocation().state;
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
   const [content, setContent] = useState('');
 
   const updateRating = e => {
@@ -37,7 +37,7 @@ function ReviewForm(){
 
   return(
     <div className="body-container">
-      <div className="review-form">
+      <form className="review-form" onSubmit={handleSubmit}>
         <div className="review-label">Rate your handyman:</div>
         <select onChange={updateRating}>
           <option value={1}>1</option>
@@ -51,12 +51,13 @@ function ReviewForm(){
           className="review-content"
           value={content}
           onChange={updateContent}
+          required
         >
         </textarea>
         <div className="review-button-container">
-          <button onClick={handleSubmit}>Submit</button>
+          <button type="submit">Submit</button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
