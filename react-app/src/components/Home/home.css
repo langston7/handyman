@@ -80,3 +80,8 @@
 .home-splash-2{
   align-self: flex-end;
 }
+
+
+.orders-container div{
+  padding: 10px;
+}
