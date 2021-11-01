@@ -31,7 +31,7 @@ function ReviewForm(){
       })
     });
     await response.json();
-    history.push(`/`);
+    history.push(`/tasker/${tasker_id}`);
   }
 
 

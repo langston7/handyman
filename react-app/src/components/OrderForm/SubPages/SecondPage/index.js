@@ -77,7 +77,7 @@ function SecondPage({category, location, date, time, handleChange, currentStep})
                 name="tasker_id"
                 value={tasker.id}
                 onClick={handleSelect}
-              >Select {'&'} Continue</button>
+              >Select Tasker</button>
               <a
                 className="profile-button"
                 href={`tasker/${tasker.id}`}
