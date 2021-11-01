@@ -14,6 +14,8 @@ to complete tasks on their own or have schedules that would not allow for ease o
 
 Clients can select from services offered and fill out a form to arrange a time to meet a tasker.
 Taskers receive these orders and are intended to complete them.
+
+The site's order form filters taskers according to state and whether or not a tasker is available at the time selected.  If a timeslot is selected on the form in which a tasker in your state is already booked, *they are removed from the list*.
 ![Site Preview](https://cdn.discordapp.com/attachments/841133997501317161/904523287294529586/mdpreview1.png)
 
 As a proponent of independent entrepreneurship, I was inspired to make this website that offers
