@@ -6,7 +6,8 @@ import './secondpage.css';
 function SecondPage({category, location, date, time, handleChange, currentStep}){
   const dispatch = useDispatch();
   const currentDate = new Date();
-  const dd = currentDate.getDate();
+  let dd = currentDate.getDate();
+  if (dd < 10){ dd="0"+dd}
   const yyyy = currentDate.getFullYear();
   const mm = currentDate.getMonth()+1;
   const today = yyyy + '-' + mm + '-' + dd;
