@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../store/category";
+import { getOrders } from "../../store/order";
+import { getTaskerByUserID } from '../../store/tasker';
 import './home.css'
 
 const Home = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const taskers = useSelector(state => Object.values(state.taskers));
-  const thisTasker = taskers?.filter((tasker) => tasker.user_id === user?.id)[0];
+  // const taskers = useSelector(state => Object.values(state.taskers));
+  // const thisTasker = taskers?.filter((tasker) => tasker.user_id === user?.id)[0];
+  const tasker = useSelector(state => state.taskers);
   const categories = useSelector(state => Object.values(state.categories));
   const orders = useSelector(state => Object.values(state.orders));
-  const myOrders = orders?.filter((order) => order.tasker_id === thisTasker?.id);
+  const myOrders = orders?.filter((order) => order.tasker_id === tasker?.id);
   const [currCatName, setCurrCatName] = useState("Mounting")
 
   const handleChange = (e) => {
@@ -19,7 +22,9 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getCategories());
-  }, [dispatch])
+    dispatch(getOrders());
+    if(user?.is_tasker){ dispatch(getTaskerByUserID(user?.id)) }
+  }, [dispatch, user])
 
   return (
     <div className="body-container">
@@ -30,7 +35,12 @@ const Home = () => {
         <div className="orders-container">
           {myOrders ?
             myOrders?.map((order) =>
-              <div>You have an appointment with {order.user_FN} {order.user_LN} on {order.date} at {order.time}.</div>
+              <div className="order-card">
+                <div key={order.id}>You have an appointment with {order.user_FN} {order.user_LN} on {order.date} in the {order.time}.</div>
+                <div>Service: {order.category}</div>
+                <div>Their message:</div>
+                <div>{order.details}</div>
+              </div>
             )
             :
             <div>You have no upcoming orders.</div>
