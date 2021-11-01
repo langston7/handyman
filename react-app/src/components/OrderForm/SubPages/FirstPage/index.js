@@ -1,6 +1,6 @@
 import './firstpage.css';
 
-function FirstPage({category, handleChange, currentStep}){
+function FirstPage({category, location, duration, details, handleChange, currentStep}){
 
   const states=['Alabama','Alaska','Arizona','Arkansas','California','Colorado',
     'Connecticut','Delaware', 'Florida','Georgia', 'Hawaii','Idaho',
@@ -16,42 +16,44 @@ function FirstPage({category, handleChange, currentStep}){
     return null
   }
   return(
-    <div className="form-container">
-      <div class-Name="form-inner">
+    <div className="preform-container">
+      <div className="form-inner">
         <h2 className="fp-category">
           {category?.name}
         </h2>
-        <div>
+        <div className="fp-input-block">
           <div>YOUR TASK LOCATION</div>
           <select
             name="location"
             onChange={handleChange}
+            value={location}
           >
             <option disabled selected value> -Select your State- </option>
             {states.map((state) =>
-              <option value={state}>{state}</option>
+              <option key={state} value={state}>{state}</option>
             )}
           </select>
         </div>
-        <div>
+        <div className="fp-input-block">
           <div>TASK OPTIONS</div>
-          <input type="radio" name="duration" value="small" onChange={handleChange}></input>
+          <input type="radio" name="duration" value="small" onChange={handleChange} checked={duration === "small"}></input>
           <label>Small - Est. 1hr</label>
-          <input type="radio" name="duration" value="medium" onChange={handleChange}></input>
+          <input type="radio" name="duration" value="medium" onChange={handleChange} checked={duration === "medium"}></input>
           <label>Medium - Est. 2-3 hrs</label>
-          <input type="radio" name="duration" value="large" onChange={handleChange}></input>
+          <input type="radio" name="duration" value="large" onChange={handleChange} checked={duration === "large"}></input>
           <label>Large - Est. 4+ hrs</label>
         </div>
-        <div>
+        <div className="fp-input-block">
           <div>TELL US THE DETAILS OF YOUR TASK</div>
-          <input
-            maxLength='20'
+          <textarea
+            maxLength='200'
             name="details"
             type="textfield"
             placeholder="What do you need done"
             onChange={handleChange}
             className="fp-details-input"
-          ></input>
+            value={details}
+          ></textarea>
         </div>
       </div>
     </div>

@@ -20,6 +20,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      setErrors(["Passwords do not match."])
     }
   };
 
@@ -56,30 +58,36 @@ const SignUpForm = () => {
           ))}
         </div>
         <div className='auth-field'>
-          <label>First Name</label>
+          <label>First Name <span>(Max. 20 Characters)</span></label>
           <input
             type='text'
             name='first_name'
             onChange={updateFirstName}
             value={first_name}
+            maxLength="20"
+            required={true}
           ></input>
         </div>
         <div className='auth-field'>
-          <label>Last Name</label>
+          <label>Last Name <span>(Max. 20 Characters)</span></label>
           <input
             type='text'
             name='last_name'
             onChange={updateLastName}
             value={last_name}
+            maxLength="20"
+            required={true}
           ></input>
         </div>
         <div className='auth-field'>
-          <label>Email</label>
+          <label>Email <span>(Max. 40 Characters)</span></label>
           <input
-            type='text'
+            type='email'
             name='email'
             onChange={updateEmail}
             value={email}
+            maxLength="40"
+            required={true}
           ></input>
         </div>
         <div className='auth-field'>
@@ -89,6 +97,7 @@ const SignUpForm = () => {
             name='password'
             onChange={updatePassword}
             value={password}
+            required={true}
           ></input>
         </div>
         <div>

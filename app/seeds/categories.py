@@ -15,7 +15,7 @@ def seed_categories():
   )
   Plumbing = Category(
     name='Plumbing',
-    img_src="https://res.cloudinary.com/taskrabbit-com/image/upload/q_auto/v1553096950/xrxccoc5mrtpi1kczej3.jpg"
+    img_src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Pipes_various.jpg/1024px-Pipes_various.jpg"
   )
   Painting = Category(
     name='Painting',
@@ -23,7 +23,7 @@ def seed_categories():
   )
   Moving = Category(
     name='Moving',
-    img_src="https://res.cloudinary.com/taskrabbit-com/image/upload/q_auto/v1562090409/j6dtjagxmukehexyt8o7.jpg"
+    img_src="https://www.ikea.com/us/en/images/products/jaettene-moving-box-brown__0711149_pe728017_s5.jpg"
   )
   Yardwork = Category(
     name='Yardwork',

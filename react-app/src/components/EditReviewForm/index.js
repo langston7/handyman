@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { useHistory, useLocation } from "react-router";
-import './reviewform.css';
+import { useDispatch } from "react-redux";
+import { useLocation, useHistory } from "react-router"
+import { patchReview } from "../../store/review";
 
-function ReviewForm(){
+function EditReviewForm(){
   const history = useHistory();
-  const {tasker_id, user_id} = useLocation().state;
-  const [rating, setRating] = useState(0);
-  const [content, setContent] = useState('');
+  const dispatch = useDispatch();
+  const {review_id, review_rating, review_content, tasker_id} = useLocation().state;
+  const [rating, setRating] = useState(review_rating);
+  const [content, setContent] = useState(review_content);
 
   const updateRating = e => {
     setRating(e.target.value);
@@ -18,20 +20,9 @@ function ReviewForm(){
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const response = await fetch('/api/reviews/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        rating: rating,
-        content: content,
-        user_id: user_id,
-        tasker_id: tasker_id
-      })
-    });
-    await response.json();
-    history.push(`/`);
+
+    await dispatch(patchReview(review_id, rating, content));
+    history.push(`/tasker/${tasker_id}`)
   }
 
 
@@ -39,7 +30,7 @@ function ReviewForm(){
     <div className="body-container">
       <div className="review-form">
         <div className="review-label">Rate your handyman:</div>
-        <select onChange={updateRating}>
+        <select onChange={updateRating} value={rating}>
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
@@ -48,6 +39,7 @@ function ReviewForm(){
         </select>
         <div className="review-label">Tell us how they did:</div>
         <textarea
+          type="textfield"
           className="review-content"
           value={content}
           onChange={updateContent}
@@ -61,5 +53,4 @@ function ReviewForm(){
   )
 }
 
-
-export default ReviewForm
+export default EditReviewForm

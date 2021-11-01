@@ -5,13 +5,15 @@ import session from './session'
 import taskerReducer from './tasker';
 import userReducer from './user';
 import orderReducer from './order'
+import reviewReducer from './review';
 
 const rootReducer = combineReducers({
   session,
   categories: categoryReducer,
   users: userReducer,
   taskers: taskerReducer,
-  orders: orderReducer
+  orders: orderReducer,
+  reviews: reviewReducer
 });
 
 

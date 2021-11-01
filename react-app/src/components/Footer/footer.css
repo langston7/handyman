@@ -1,0 +1,14 @@
+.footer-container{
+  height: 100px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid gray;
+  margin-top: 120px;
+}
+
+.about-container{
+  width: 500px;
+  text-align: center;
+}

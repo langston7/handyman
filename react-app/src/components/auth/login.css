@@ -8,8 +8,18 @@
 .auth-field{
   padding-top: 10px;
   padding-bottom: 10px;
+  display:flex;
+  flex-direction: column;
 }
 
+.auth-field label{
+  font-weight: bold;
+}
+
+.auth-field label span{
+  font-weight: normal;
+}
 .auth-form button{
   padding: 20px;
+  margin-right: 20px;
 }

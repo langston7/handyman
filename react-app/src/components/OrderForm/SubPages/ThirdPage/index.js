@@ -1,3 +1,5 @@
+import './thirdpage.css'
+
 function ThirdPage({formData, currentStep, handleSubmit}){
 
   if (currentStep !== 3){
@@ -6,8 +8,8 @@ function ThirdPage({formData, currentStep, handleSubmit}){
 
   return(
     <div>
-      <div>Ready to Submit order?</div>
-      <button onClick={handleSubmit}>Submit order</button>
+      <h2>Ready to Submit your order?</h2>
+      <button onClick={handleSubmit} className="submit-button">Submit order</button>
     </div>
   )
 }

@@ -12,8 +12,12 @@ import PreForm from './components/PreForm';
 import OrderForm from './components/OrderForm';
 import MyOrders from './components/MyOrders';
 import ReviewForm from './components/ReviewForm';
+import EditReviewForm from './components/EditReviewForm';
 import MyProfile from './components/MyProfile';
 import TaskerSignUpForm from './components/auth/TaskerSignUpForm';
+import Footer from './components/Footer';
+import TaskerProfile from './components/TaskerProfile';
+import {About} from './components/Footer/about'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,14 +53,14 @@ function App() {
         <Route path='/services' exact={true}>
           <Services />
         </Route>
-        <ProtectedRoute path='/dashboard' exact={true}>
-
-        </ProtectedRoute>
         <ProtectedRoute path='/user/orders' exact={true}>
           <MyOrders />
         </ProtectedRoute>
         <ProtectedRoute path='/user/profile' exact={true} >
           <MyProfile />
+        </ProtectedRoute>
+        <ProtectedRoute path='/tasker/:tasker_id' exact={true} >
+          <TaskerProfile />
         </ProtectedRoute>
         <ProtectedRoute path='/booking'>
           <PreForm />
@@ -67,7 +71,14 @@ function App() {
         <ProtectedRoute path='/review'>
           <ReviewForm />
         </ProtectedRoute>
+        <ProtectedRoute path='/edit-review'>
+          <EditReviewForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/about'>
+          <About />
+        </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

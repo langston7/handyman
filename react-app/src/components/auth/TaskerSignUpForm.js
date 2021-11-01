@@ -33,6 +33,8 @@ const TaskerSignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      setErrors(["Passwords do not match."])
     }
   };
 
@@ -84,6 +86,7 @@ const TaskerSignUpForm = () => {
             name='first_name'
             onChange={updateFirstName}
             value={first_name}
+            maxLength="20"
           ></input>
         </div>
         <div className='auth-field'>
@@ -94,16 +97,18 @@ const TaskerSignUpForm = () => {
             name='last_name'
             onChange={updateLastName}
             value={last_name}
+            maxLength="20"
           ></input>
         </div>
         <div className='auth-field'>
           <label>Email</label>
           <input
             required
-            type='text'
+            type='email'
             name='email'
             onChange={updateEmail}
             value={email}
+            maxLength="40"
           ></input>
         </div>
         <div className='auth-field'>
@@ -134,6 +139,7 @@ const TaskerSignUpForm = () => {
             name='bio'
             onChange={updateBio}
             value={bio}
+            maxLength="400"
           >
           </input>
         </div>
@@ -146,7 +152,7 @@ const TaskerSignUpForm = () => {
           >
             <option disabled selected value> -Select your State- </option>
             {states.map((state) =>
-              <option value={state}>{state}</option>
+              <option key={state} value={state}>{state}</option>
             )}
           </select>
         </div>

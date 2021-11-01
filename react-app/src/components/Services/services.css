@@ -6,31 +6,32 @@
 }
 
 .services-banner{
-  max-width: 100%;
+  width:100vw;
   background-image: url(https://res.cloudinary.com/taskrabbit-com/image/upload/q_auto,f_auto/v1622682011/rx0seiq8jsml7pgkgrec.png);
-  background-size:120%;
-  background-repeat: no-repeat;
   min-height:400px;
   display:flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center;
 }
 
 .banner-quote{
   color:white;
-  font-size: 30px;
+  font-size: 50px;
   font-weight: bold;
 }
 
 .services-card{
   margin: 30px auto;
-  max-width: 300px;
+  width: 300px;
   border: 1px solid lightgray;
   padding-bottom: 15px;
 }
 
 .services-img{
-  width:fit-content;
+  width:300px;
   height:265px;
   object-fit:cover;
   object-position:center;

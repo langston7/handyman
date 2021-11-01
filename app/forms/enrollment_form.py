@@ -1,6 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, ValidationError
+from app.models import User
+
+
+def user_exists(form, field):
+    email = field.data
+    user = User.query.filter(User.email == email).first()
+    if user:
+        raise ValidationError('Email address is already in use.')
 
 
 class EnrollmentForm(FlaskForm):
@@ -8,7 +16,7 @@ class EnrollmentForm(FlaskForm):
         'first_name', validators=[DataRequired()])
     last_name = StringField(
         'last_name', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password', validators=[DataRequired()])
     bio = StringField('bio', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])

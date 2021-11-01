@@ -1,0 +1,10 @@
+.fp-details-input{
+  width: 400px;
+  padding-bottom: 80px;
+  word-wrap: break-word;
+  resize:none;
+}
+
+.fp-input-block{
+  margin-bottom: 10px;
+}

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTaskers } from "../../store/tasker";
+import './myprofile.css'
 
 function MyProfile(){
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function MyProfile(){
   },[dispatch])
 
   return(
-    <div className="body-container">
+    <div className="profile-container">
       <div className="profile-inner">
         <h2>Your Profile </h2>
         <div className="tasker-card">
