@@ -4,7 +4,7 @@ import './reviewform.css';
 
 function ReviewForm(){
   const history = useHistory();
-  const {tasker_id, user_id} = useLocation().state;
+  const {tasker_id, user_id, order_id} = useLocation().state;
   const [rating, setRating] = useState(1);
   const [content, setContent] = useState('');
 
@@ -31,6 +31,15 @@ function ReviewForm(){
       })
     });
     await response.json();
+    await fetch(`/api/orders/${order_id}/complete`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        1: 1
+      })
+    });
     history.push(`/tasker/${tasker_id}`);
   }
 
@@ -48,6 +57,7 @@ function ReviewForm(){
         </select>
         <div className="review-label">Tell us how they did:</div>
         <textarea
+          maxLength='200'
           className="review-content"
           value={content}
           onChange={updateContent}

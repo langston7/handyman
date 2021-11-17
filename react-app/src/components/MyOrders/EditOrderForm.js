@@ -27,6 +27,7 @@ function EditOrderForm({order}){
         Edit this message
       </button>
       <textarea
+        maxLength='200'
         value={details}
         onChange={updateDetails}
         name="details"

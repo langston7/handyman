@@ -39,6 +39,7 @@ function EditReviewForm(){
         </select>
         <div className="review-label">Tell us how they did:</div>
         <textarea
+          maxLength='200'
           type="textfield"
           className="review-content"
           value={content}
