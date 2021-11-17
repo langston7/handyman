@@ -36,7 +36,6 @@ def post_order():
       user_id = (form.data['user_id']),
       tasker_id = (form.data['tasker_id'])
     )
-    print(order)
     db.session.add(order)
     db.session.commit()
     return order.to_dict()
@@ -49,7 +48,6 @@ def post_order():
 def put_order(id):
   order = Order.query.get(id)
   form = EditOrderForm()
-  print(form.data['details'])
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     order.details = form.data['details']
@@ -57,6 +55,15 @@ def put_order(id):
     return order.to_dict()
   else:
     return {'error': 'Form did not validate'}, 401
+
+
+@order_routes.route('/<int:id>/complete', methods=['PATCH'])
+@login_required
+def mark_order_as_complete(id):
+  order = Order.query.get(id)
+  order.is_complete = True
+  db.session.commit()
+  return order.to_dict()
 
 
 @order_routes.route('/<int:id>', methods=['DELETE'])
