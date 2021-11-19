@@ -25,6 +25,7 @@ const Navigation = () => {
         {user?.is_tasker ?
           <div className='nav-link-container'>
             <NavLink to={`/tasker/${tasker?.id}`} className='nav-link'>My Profile</NavLink>
+            <NavLink to={`/new-category`} className='nav-link'>Create New Category</NavLink>
             <LogoutButton/>
           </div>
             :

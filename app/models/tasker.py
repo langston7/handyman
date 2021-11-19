@@ -18,6 +18,7 @@ class Tasker(db.Model):
   availability_start = db.Column(db.Integer, nullable=False)
   availability_end = db.Column(db.Integer, nullable=False)
 
+  initialized_categories = db.relationship("Category", back_populates="tasker")
   orders = db.relationship("Order", back_populates="tasker")
   reviews = db.relationship("Review", back_populates="tasker")
   user = db.relationship("User", back_populates="tasker")
@@ -55,8 +56,10 @@ class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(40), nullable=False)
   img_src = db.Column(db.String(200), nullable=False)
+  tasker_id = db.Column(db.Integer, db.ForeignKey("taskers.id"))
 
   orders = db.relationship("Order", back_populates="category")
+  tasker = db.relationship("Tasker", back_populates="initialized_categories")
   taskers = db.relationship(
     "Tasker",
     secondary=TaskersToCategories,
@@ -67,4 +70,5 @@ class Category(db.Model):
       'id': self.id,
       'name': self.name,
       'img_src': self.img_src,
+      'tasker_id': self.tasker_id
     }

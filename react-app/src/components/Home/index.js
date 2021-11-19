@@ -38,7 +38,7 @@ const Home = () => {
               <div className="order-card">
                 <div key={order.id}>You have an appointment with {order.user_FN} {order.user_LN} on {order.date} in the {order.time}.</div>
                 <div>Service: {order.category}</div>
-                <div>Their message:</div>
+                <div>Their message: {order.details}</div>
                 <div>{order.details}</div>
               </div>
             )
