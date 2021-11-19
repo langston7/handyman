@@ -18,6 +18,7 @@ import TaskerSignUpForm from './components/auth/TaskerSignUpForm';
 import Footer from './components/Footer';
 import TaskerProfile from './components/TaskerProfile';
 import {About} from './components/Footer/about'
+import CreateCategoryForm from './components/CreateCategoryForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -73,6 +74,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/edit-review'>
           <EditReviewForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/new-category'>
+          <CreateCategoryForm />
         </ProtectedRoute>
         <Route path='/about'>
           <About />
