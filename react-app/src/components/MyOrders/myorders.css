@@ -25,3 +25,9 @@
 .hidden{
   display:none;
 }
+
+
+.navlink-tasker{
+  color: blue;
+  font-weight: bold;
+}

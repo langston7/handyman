@@ -1,0 +1,8 @@
+.category-form{
+  display:flex;
+  flex-direction: column;
+}
+
+.category-form button{
+  margin: 20px;
+}

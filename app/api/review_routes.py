@@ -50,3 +50,10 @@ def put_review(id):
     return review.to_dict()
   else:
     return {'error': 'Form did not validate'}, 401
+
+@review_routes.route('/<int:id>', methods=['DELETE'])
+def delete_review(id):
+  review = Review.query.get(id)
+  db.session.delete(review)
+  db.session.commit()
+  return {'message': 'Review deleted.'}

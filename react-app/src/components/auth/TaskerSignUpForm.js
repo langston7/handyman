@@ -121,8 +121,8 @@ const TaskerSignUpForm = () => {
             value={password}
           ></input>
         </div>
-        <div>
-          <label className='auth-field'>Repeat Password</label>
+        <div className='auth-field'>
+          <label>Repeat Password</label>
           <input
             type='password'
             name='repeat_password'
@@ -131,20 +131,20 @@ const TaskerSignUpForm = () => {
             required={true}
           ></input>
         </div>
-        <div>
-          <label className='auth-field'>Enter a short bio about yourself</label>
-          <input
+        <div className='auth-field'>
+          <label>Enter a short bio about yourself</label>
+          <textarea
+            className="bio-textfield"
             required
-            type='text'
             name='bio'
             onChange={updateBio}
             value={bio}
             maxLength="400"
           >
-          </input>
+          </textarea>
         </div>
-        <div>
-          <label className='auth-field'>Enter the state you live in</label>
+        <div className='auth-field'>
+          <label>Enter the state you live in</label>
           <select
             required
             name='state'

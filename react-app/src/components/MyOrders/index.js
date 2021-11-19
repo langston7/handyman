@@ -31,7 +31,7 @@ function MyOrders(){
       {inProgressOrders?.map((order) =>
         <div key={order.id} className="order-card">
           <div className="order-component">
-            You have an order placed with {order.tasker_FN} {order.tasker_LN}
+            You have an order placed with <NavLink className="navlink-tasker" to={`/tasker/${order.tasker_id}`}>{order.tasker_FN} {order.tasker_LN} </NavLink>
             at your location in {order.location} on {order.date}.  It should take approximately
             {order.duration === "small" ? ' 1 ' :
             order.duration === "medium" ? ' 2-3 ' : ' 4-5 '}
