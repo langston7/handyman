@@ -26,3 +26,11 @@ def post_category():
     return category.to_dict()
   else:
     return {'error': 'Form did not validate'}, 401
+
+
+@category_routes.route('/<int:id>', methods=['DELETE'])
+def delete_category(id):
+  category = Category.query.get(id)
+  db.session.delete(category)
+  db.session.commit()
+  return {'message': 'Category deleted.'}

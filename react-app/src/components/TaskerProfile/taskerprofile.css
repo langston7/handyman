@@ -25,3 +25,7 @@
   width: 270px;
   word-wrap: break-word;
 }
+
+.review-card button{
+  margin-left: 20px;
+}

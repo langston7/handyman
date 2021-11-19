@@ -100,8 +100,8 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
-        <div>
-          <label className='auth-field'>Repeat Password</label>
+        <div className='auth-field'>
+          <label>Repeat Password</label>
           <input
             type='password'
             name='repeat_password'

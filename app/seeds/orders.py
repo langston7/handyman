@@ -8,7 +8,7 @@ def seed_orders():
     duration = "small",
     details = "Please move things around my house.",
     is_complete = False,
-    tasker_id = 1,
+    tasker_id = 2,
     user_id = 1,
     category_id = 1
   )
@@ -19,7 +19,7 @@ def seed_orders():
     duration = "medium",
     details = "Please move things around my house.",
     is_complete = False,
-    tasker_id = 1,
+    tasker_id = 2,
     user_id = 1,
     category_id = 2
   )
@@ -30,7 +30,7 @@ def seed_orders():
     duration = "large",
     details = "Please move things around my house.",
     is_complete = False,
-    tasker_id = 1,
+    tasker_id = 2,
     user_id = 1,
     category_id = 3
   )

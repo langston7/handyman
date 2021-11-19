@@ -27,6 +27,14 @@ const LoginForm = () => {
     }
   }
 
+  const logInTaskerDemo = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("1abc@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    }
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -72,8 +80,13 @@ const LoginForm = () => {
             required={true}
           />
         </div>
-        <button type='submit'>Login</button>
-        <button onClick={logInDemo}>Demo User</button>
+        <div className="demo-login-container">
+          <button type='submit'>Login</button>
+        </div>
+        <div className="demo-login-container">
+          <button onClick={logInDemo}>Demo User</button>
+          <button onClick={logInTaskerDemo}>Demo Tasker</button>
+        </div>
       </form>
     </div>
 

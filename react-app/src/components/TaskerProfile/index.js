@@ -25,6 +25,17 @@ function TaskerProfile(){
     dispatch(getReviews())
   }, [dispatch, tasker_id])
 
+  const handleDelete = async e => {
+    e.preventDefault();
+    await fetch(`/api/reviews/${e.target.value}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    dispatch(getReviews())
+  }
+
   return(
     <div className="profile-body">
       <div className={"tasker-card"}>
@@ -57,6 +68,11 @@ function TaskerProfile(){
             className={`profile-button ${user.id === review.user_id ? null : "hidden"}`}
           >Edit your Review
           </NavLink>
+          <button
+            value={review.id}
+            className={`profile-button ${user.id === review.user_id ? null : "hidden"}`}
+            onClick={handleDelete}
+          >Delete this Review</button>
         </div>
         )}
       </div>
