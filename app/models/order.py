@@ -31,6 +31,7 @@ class Order(db.Model):
       'user_id': self.user_id,
       'category_id': self.category_id,
       'category': self.category.name,
+      'tasker_profile_pic': self.tasker.profile_pic,
       'tasker_FN': self.tasker.user.first_name,
       'tasker_LN': self.tasker.user.last_name,
       'user_FN': self.user.first_name,

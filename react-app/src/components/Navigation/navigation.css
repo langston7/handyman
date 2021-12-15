@@ -8,13 +8,17 @@
   font-weight: bold;
 }
 
+.logoimg{
+  width: 30px;
+}
+
 .nav-inner{
   display:flex;
   justify-content: space-between;
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 5px;
 }
 
 .nav-link{

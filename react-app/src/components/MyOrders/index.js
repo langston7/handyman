@@ -30,32 +30,48 @@ function MyOrders(){
       <div>{myOrders[0] === undefined ? "You have no orders!" : null }</div>
       {inProgressOrders?.map((order) =>
         <div key={order.id} className="order-card">
-          <div className="order-component">
-            You have an order placed with <NavLink className="navlink-tasker" to={`/tasker/${order.tasker_id}`}>{order.tasker_FN} {order.tasker_LN} </NavLink>
-            at your location in {order.location} on {order.date}.  It should take approximately
-            {order.duration === "small" ? ' 1 ' :
-            order.duration === "medium" ? ' 2-3 ' : ' 4-5 '}
-            hours to complete. {order.tasker_FN} will arrive onsite
-            at
-            {order.time === "morning" ? ' 8:00 A.M. ' :
-            order.time === "noon" ? ' 1:00 P.M. ' : ' 6:00 P.M. '
-            }.</div>
-          <div className="order-component">
-            Your message to {order.tasker_FN}: {order.details}
+          <div className="order-header">
+            <div className="order-header-component">
+              <div>ORDER PLACED</div>
+              <div>{order.date}</div>
+            </div>
+            <div className="order-header-component">
+              <div>TASK</div>
+              <div>{order.category}</div>
+            </div>
+            <div className="order-header-component">
+              <div>TASKER</div>
+              <NavLink className="navlink-tasker" to={`/tasker/${order.tasker_id}`}>{order.tasker_FN} {order.tasker_LN} </NavLink>
+            </div>
+
           </div>
-
-          <EditOrderForm order={order}/>
-
-
-          <div className="order-component">If this task needs to be canceled for any reason, Click Cancel.</div>
-          <div className="order-component">If this task has been completed, feel free to a leave a review.</div>
-          <button className={`step-button`} value={order.id} onClick={cancelTask}>Cancel</button>
-          <NavLink to={{
-            pathname:"/review",
-            state: {tasker_id:order.tasker_id, user_id:order.user_id, order_id:order.id}
-          }}
-            className={`review-button`}
-          >Leave Review</NavLink>
+          <div className="order-body">
+            <div className="order-half">
+              <h3 className="order-body-component">Appointment set for {order.time === "morning" ? ' 8:00 A.M. ' :
+              order.time === "noon" ? ' 1:00 P.M. ' : ' 6:00 P.M. '
+              }</h3>
+              <div className="order-body-details">
+                <img className="order-thumbnail order-body-component" alt="a" src={order.tasker_profile_pic}></img>
+                <div className="order-body-details-inner">
+                  <div className="order-label">Your message to {order.tasker_FN}:</div>
+                  <div>{order.details}</div>
+                  <EditOrderForm order={order}/>
+                </div>
+              </div>
+            </div>
+            <div className="order-half">
+              <div className="order-body-menu">
+                <button className={`order-button`} value={order.id} onClick={cancelTask}>Cancel</button>
+                <NavLink to={{
+                  pathname:"/review",
+                  state: {tasker_id:order.tasker_id, user_id:order.user_id, order_id:order.id}
+                }}
+                  className={`order-button`}
+                >Leave Review
+                </NavLink>
+              </div>
+            </div>
+          </div>
         </div>
       )}
       <h2>Completed Orders:</h2>
@@ -70,7 +86,8 @@ function MyOrders(){
             at
             {order.time === "morning" ? ' 8:00 A.M. ' :
             order.time === "noon" ? ' 1:00 P.M. ' : ' 6:00 P.M. '
-            }.</div>
+            }.
+          </div>
           <div className="order-component">
             Your message to {order.tasker_FN}: {order.details}
           </div>
