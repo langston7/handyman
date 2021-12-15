@@ -1,10 +1,48 @@
 .order-card{
   border: 1px solid lightgray;
-  width: 500px;
-  margin-top: 30px;
+  width: 700px;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
-.order-component{
+.order-header{
+  display:flex;
+  background-color: rgb(164, 216, 218);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.order-header-component{
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.order-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.order-body-menu{
+  display: flex;
+  flex-direction: column;
+}
+
+.order-body-details{
+  display:flex;
+  width: 550px;
+  justify-content: left;
+  align-items: center;
+}
+
+.order-thumbnail{
+  width: 100px;
+}
+
+.order-body-component{
   padding: 10px;
 }
 
@@ -20,14 +58,44 @@
 
 .order-button{
   margin-left:30px;
+  padding: 10px;
+  margin: 7px;
+  background-color: coral;
+  border-radius: 5px;
+  box-shadow: rgb(134, 134, 134) 0 0 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
 }
 
 .hidden{
   display:none;
 }
 
+.order-textarea{
+  width: 250px;
+  height: 47px;
+  resize: none;
+}
 
 .navlink-tasker{
   color: blue;
   font-weight: bold;
+}
+
+
+.order-half h3{
+  margin: 10px;
+}
+
+.order-body-details-inner{
+  display:flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.order-label{
+  font-weight: bold;
+  margin-bottom: 5px;
 }

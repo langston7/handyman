@@ -20,6 +20,8 @@ const Navigation = () => {
     <nav className='nav-container'>
       <div className='nav-inner'>
         <NavLink to='/' exact={true} className='nav-link logo'>
+          <img className="logoimg" alt="a" src="https://cdn.discordapp.com/attachments/841133997501317161/920048646639218748/Untitled.png">
+          </img>
           HandyMan
         </NavLink>
         {user?.is_tasker ?

@@ -31,7 +31,7 @@ function EditOrderForm({order}){
         value={details}
         onChange={updateDetails}
         name="details"
-        className={`order-button ${show ? "hidden" : null}`}
+        className={`order-textarea ${show ? "hidden" : null}`}
       ></textarea>
       <button className={`order-button ${show ? "hidden" : null}`} onClick={handleSubmit}>
         Submit

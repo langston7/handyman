@@ -16,13 +16,6 @@ const delete_order = (order_id) => {
   }
 }
 
-// const patch_order = (order) => {
-//   return{
-//     type: PATCH_ORDER,
-//     payload: order,
-//   }
-// }
-
 export const getOrders = () => async dispatch => {
   const response = await fetch('/api/orders/');
   const data = await response.json();
