@@ -40,12 +40,14 @@
   display:flex;
   flex-direction: column;
   width:200px;
+  margin-right: 30px;
 }
 
 .tasker-avatar{
-  width:200px;
-  height:200px;
+  width:180px;
+  height:180px;
   border-radius: 30px;
+  padding: 10px;
 }
 
 .highlight{
@@ -64,4 +66,20 @@
   margin-top: 5px;
   font-size: 14px;
   text-align: center;
+}
+
+.tasker-name{
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.tasker-tasks-count{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tasker-bio-section{
+  word-wrap: break-word;
+  max-width: 250px;
 }

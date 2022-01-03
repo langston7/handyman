@@ -89,9 +89,9 @@ function SecondPage({category, location, date, time, handleChange, currentStep})
             </div>
             <div className="tasker-right">
               <div className="tasker-right-top">
-                <div>{tasker.user.first_name} {tasker.user.last_name}</div>
-                <div>Tasks Completed: {tasker.tasks_completed}</div>
-                <div>{tasker.bio}</div>
+                <div className="tasker-name">{tasker.user.first_name} {tasker.user.last_name}</div>
+                <div className="tasker-tasks-count">Tasks Completed: {tasker.tasks_completed}</div>
+                <div className="tasker-bio-section">{tasker.bio}</div>
               </div>
             </div>
           </div>

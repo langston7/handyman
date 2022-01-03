@@ -2,7 +2,7 @@ from app.models import db, Review
 import random
 
 def seed_reviews():
-  for i in range(1, 997):
+  for i in range(1, 497):
     for j in range(1, 4):
       review = Review(
           tasker_id=i,
