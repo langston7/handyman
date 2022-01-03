@@ -9,7 +9,7 @@ review_routes = Blueprint('reviews', __name__)
 
 @review_routes.route('/')
 def reviews():
-  reviews = Review.query.all()
+  reviews = Review.query.order_by(Review.id).all()
   reviewsDict = {"reviews" : [review.to_dict() for review in reviews]}
   return reviewsDict
 

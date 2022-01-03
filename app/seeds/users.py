@@ -1,7 +1,7 @@
 from app.models import db, User
 import random
-first_names = ['Steve', 'Bill', 'Ken', "Danny"]
-last_names = ['Steveson', 'Billson', 'Kenson', 'Dannyson']
+first_names = ['Steve', 'Bill', 'Ken', "Danny", "Vladmir", "Norman", "Edward", "Diamond", "Cecil", "Ryan", "Spencer", "Vincent", "Samuel", "Nick", "Jhett", "Trevor", "Trey", "Jack" ]
+last_names = ['A.', 'B.', 'C.', 'D.', 'E.', 'F.', 'G.', 'H.', 'J.', 'K.', 'L.', 'M.', 'O.', 'P.', 'R.', 'S.', 'T.']
 
 def seed_users():
     demo = User(
@@ -30,10 +30,10 @@ def seed_users():
     db.session.add(steve)
     db.session.add(eric)
 
-    for i in range(1000):
+    for i in range(500):
         user = User(
-            first_name=first_names[random.randint(0,3)],
-            last_name=last_names[random.randint(0,3)],
+            first_name=first_names[random.randint(0, 17)],
+            last_name=last_names[random.randint(0, 16)],
             email=(str(i) + "abc@aa.io"),
             password='password',
             is_tasker=True
